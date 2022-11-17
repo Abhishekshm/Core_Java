@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.entity.Course;
 import com.entity.Instructor;
 import com.entity.InstructorDetail;
 
@@ -31,6 +32,7 @@ public class HibernateUtil {
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Instructor.class);
 				configuration.addAnnotatedClass(InstructorDetail.class);
+				configuration.addAnnotatedClass(Course.class);
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
 				System.out.println("Hibernate Java Config serviceRegistry created");
