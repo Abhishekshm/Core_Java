@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.entity.SchoolDetails;
 import com.entity.Student;
 import com.entity.StudentDetails;
 
@@ -27,10 +28,13 @@ public class HibernateUtil {
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 				settings.put(Environment.SHOW_SQL, "true");
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+
+				// For deleting you have to change create-drop to update//
 				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Student.class);
 				configuration.addAnnotatedClass(StudentDetails.class);
+				configuration.addAnnotatedClass(SchoolDetails.class);
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
 				System.out.println("Hibernate Java Config serviceRegistry created");

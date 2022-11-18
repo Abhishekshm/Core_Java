@@ -5,18 +5,17 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.entity.Student;
+import com.entity.SchoolDetails;
 import com.util.HibernateUtil;
 
-public class StudentDao {
-
-	public void saveStudent(Student student) {
+public class SchoolDetailDao {
+	public void saveSchool(SchoolDetails school) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
-			session.save(student);
+			session.save(school);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -27,13 +26,13 @@ public class StudentDao {
 		}
 	}
 
-	public void updateStudent(Student student) {
+	public void updateSchool(SchoolDetails school) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// save the student object
-			session.update(student);
+			session.update(school);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -44,7 +43,7 @@ public class StudentDao {
 		}
 	}
 
-	public void deleteStudent(int id) {
+	public void deleteschool(int id) {
 
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -52,10 +51,10 @@ public class StudentDao {
 			transaction = session.beginTransaction();
 
 			// Delete a instructor object
-			Student student = session.get(Student.class, id);
-			if (student != null) {
-				session.delete(student);
-				System.out.println("Student is deleted");
+			SchoolDetails school = session.get(SchoolDetails.class, id);
+			if (school != null) {
+				session.delete(school);
+				System.out.println("instructor is deleted");
 			}
 
 			// commit transaction
@@ -68,15 +67,15 @@ public class StudentDao {
 		}
 	}
 
-	public Student getStudent(int id) {
+	public SchoolDetails getSchool(int id) {
 
 		Transaction transaction = null;
-		Student student = null;
+		SchoolDetails school = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an instructor object
-			student = session.get(Student.class, id);
+			school = session.get(SchoolDetails.class, id);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -85,19 +84,19 @@ public class StudentDao {
 			}
 			e.printStackTrace();
 		}
-		return student;
+		return school;
 	}
 
-	public List<Student> getAllStudent() {
+	public List<SchoolDetails> getAllInstructor() {
 
 		Transaction transaction = null;
-		List<Student> listOfStudent = null;
+		List<SchoolDetails> listOfSchool = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an instructor object
 
-			listOfStudent = session.createQuery("from Student").getResultList();
+			listOfSchool = session.createQuery("from School").getResultList();
 
 			// commit transaction
 			transaction.commit();
@@ -107,7 +106,6 @@ public class StudentDao {
 			}
 			e.printStackTrace();
 		}
-		return listOfStudent;
+		return listOfSchool;
 	}
-
 }
